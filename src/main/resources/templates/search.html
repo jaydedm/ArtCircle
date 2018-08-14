@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Type</th>
+    </tr>
+
+    <tr th:each="opportunity : ${opportunities}">
+        <td><a th:href = "'/opportunity/category?id=' + ${opportunity.category.id}" th:text="${opportunity.title}"></a></td>
+        <td th:text="${opportunity.description}"></td>
+        <td th:text="${opportunity.category.name}"></td>
+    </tr>
+
+</table>
+
+
+</body>
+</html>
