@@ -1,5 +1,6 @@
 package org.launchcode.springfilterbasedauth.controllers;
 
+import org.launchcode.springfilterbasedauth.models.AbstractEntity;
 import org.launchcode.springfilterbasedauth.models.Category;
 import org.launchcode.springfilterbasedauth.models.Opportunity;
 import org.launchcode.springfilterbasedauth.models.User;
@@ -60,7 +61,7 @@ public class AuthenticationController extends AbstractController {
             return "register";
         }
 
-        User newUser = new User(form.getUsername(), form.getPassword());
+        User newUser = new User(form.getUsername(), form.getPassword(), form.getDisplayname(), form.getEmail());
         userDao.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
@@ -137,9 +138,11 @@ public class AuthenticationController extends AbstractController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String displayCreateOpportunityForm(Model model) {
+    public String displayCreateOpportunityForm(Model model, User user) {
         model.addAttribute("title", "Create Opportunity");
         model.addAttribute(new Opportunity());
+        int uid = user.getUid();
+        model.addAttribute("uid", uid);
         model.addAttribute("categories", categoryDao.findAll());
         return "create";
     }
@@ -149,17 +152,20 @@ public class AuthenticationController extends AbstractController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, Model model, @RequestParam int categoryId) {
+    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, Model model, @RequestParam int categoryId, User user, @RequestParam int uid) {
 
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Opportunity");
             model.addAttribute("categories", categoryDao.findAll());
+            model.addAttribute("User", userDao.findAll());
             return "create";
         }
 
         Category cat = categoryDao.findOne(categoryId);
+        User us = userDao.findOne(uid);
         newOpportunity.setCategory(cat);
+        newOpportunity.setUid(us);
         opportunityDao.save(newOpportunity);
         return "redirect:";
 
@@ -172,6 +178,15 @@ public class AuthenticationController extends AbstractController {
         model.addAttribute("category", categoryDao.findAll());
 
         return "search";
+    }
+
+    @RequestMapping(value = "opportunity", method = RequestMethod.GET)
+    public String category(Model model, @RequestParam int id) {
+
+        Opportunity op = opportunityDao.findOne(id);
+        model.addAttribute("opportunities", op);
+        return "opportunity";
+
     }
 
 }

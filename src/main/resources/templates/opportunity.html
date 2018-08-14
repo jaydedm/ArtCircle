@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
 </head>
-<body>
-$END$
+<body class="container">
+
+<nav th:replace="fragments :: navigation"></nav>
+
+
+<!--<table class="table">
+
+<tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Type</th>
+</tr>
+
+<tr th:each="opportunity : ${opportunities}">
+    <td th:text="${opportunity.title}"></td>
+    <td th:text="${opportunity.description}"></td>
+    <td th:text="${opportunity.category.name}"></td>
+</tr>
+
+</table> -->
+
+<h1 th:each="opportunity : ${opportunities}">
+<h1 th:align = "center" th:text="${opportunity.title}"></h1>
+    <!--<h5 th:align="center" th:text=""</h5> -->
+</h1>
+
 </body>
 </html>

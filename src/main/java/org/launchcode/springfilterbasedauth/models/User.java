@@ -4,9 +4,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,18 +22,39 @@ public class User extends AbstractEntity {
     private String username;
 
     @NotNull
+    private String displayname;
+
+    @NotNull
+    private String email;
+
+    @NotNull
     private String pwHash;
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+    @OneToMany
+    @JoinColumn(name = "user_uid")
+    private List<Opportunity> opportunities = new ArrayList<>();
+
     public User() {}
 
-    public User(String username, String password) {
+    public User(String username, String password, String displayname, String email) {
         this.username = username;
         this.pwHash = hashPassword(password);
+        this.displayname = displayname;
+        this.email = email;
+
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public String getDisplayname() {
+        return displayname;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     private static String hashPassword(String password) {

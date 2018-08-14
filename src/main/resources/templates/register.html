@@ -22,6 +22,16 @@
         <input class="form-control" th:field="*{verifyPassword}" type="password" />
         <div class="error" th:text="${verifyError}"></div>
     </div>
+    <div class="form-group">
+        <label th:for="displayname">Display Name</label>
+        <input class="form-control" th:field="*{displayname}"/>
+        <div class="error" th:errors="*{displayname}"></div>
+    </div>
+    <div class="form-group">
+        <label th:for="email">Contact Email</label>
+        <input class="form-control" th:field="*{email}"/>
+        <div class="error" th:errors="*{email}"></div>
+    </div>
 
     <input type="submit" value="Register" />
 </form>

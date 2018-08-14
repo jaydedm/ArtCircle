@@ -1,10 +1,7 @@
 package org.launchcode.springfilterbasedauth.models;
 
-import com.sun.javafx.beans.IDProperty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 public class Opportunity {
@@ -19,6 +16,12 @@ public class Opportunity {
     @NotNull
     private String description;
 
+    @NotNull
+    private String location;
+
+    @ManyToOne
+    private User user;
+
     @ManyToOne
     private Category category;
 
@@ -30,6 +33,22 @@ public class Opportunity {
     public Opportunity() {}
 
     public int getId() { return id; }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public User getUid() {
+        return user;
+    }
+
+    public void setUid(User user) {
+        this.user = user;
+    }
 
     public String getTitle() {
         return title;

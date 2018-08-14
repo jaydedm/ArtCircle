@@ -11,14 +11,16 @@
 
     <tr>
         <th>Name</th>
-        <th>Description</th>
+        <th>location</th>
         <th>Type</th>
+        <th>Posted By</th>
     </tr>
 
     <tr th:each="opportunity : ${opportunities}">
-        <td><a th:href = "'/opportunity/category?id=' + ${opportunity.category.id}" th:text="${opportunity.title}"></a></td>
-        <td th:text="${opportunity.description}"></td>
+        <td><a th:href = "'/opportunity?id=' + ${opportunity.id}" th:text="${opportunity.title}"></a></td>
+        <td th:text="${opportunity.location}"></td>
         <td th:text="${opportunity.category.name}"></td>
+        <td th:text="${opportunity.uid}"></td>
     </tr>
 
 </table>
