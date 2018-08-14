@@ -31,9 +31,6 @@ public class User extends AbstractEntity {
     private String pwHash;
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @OneToMany
-    @JoinColumn(name = "user_uid")
-    private List<Opportunity> opportunities = new ArrayList<>();
 
     public User() {}
 

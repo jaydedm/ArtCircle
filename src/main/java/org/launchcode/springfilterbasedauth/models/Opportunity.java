@@ -19,8 +19,8 @@ public class Opportunity {
     @NotNull
     private String location;
 
-    @ManyToOne
-    private User user;
+    @NotNull
+    private String author;
 
     @ManyToOne
     private Category category;
@@ -42,16 +42,16 @@ public class Opportunity {
         this.location = location;
     }
 
-    public User getUid() {
-        return user;
-    }
-
-    public void setUid(User user) {
-        this.user = user;
-    }
-
     public String getTitle() {
         return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public void setTitle(String title) {

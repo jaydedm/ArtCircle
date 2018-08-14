@@ -141,8 +141,6 @@ public class AuthenticationController extends AbstractController {
     public String displayCreateOpportunityForm(Model model, User user) {
         model.addAttribute("title", "Create Opportunity");
         model.addAttribute(new Opportunity());
-        int uid = user.getUid();
-        model.addAttribute("uid", uid);
         model.addAttribute("categories", categoryDao.findAll());
         return "create";
     }
@@ -152,20 +150,19 @@ public class AuthenticationController extends AbstractController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, Model model, @RequestParam int categoryId, User user, @RequestParam int uid) {
+    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, Model model, @RequestParam int categoryId, User user) {
 
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Opportunity");
             model.addAttribute("categories", categoryDao.findAll());
-            model.addAttribute("User", userDao.findAll());
             return "create";
         }
 
         Category cat = categoryDao.findOne(categoryId);
-        User us = userDao.findOne(uid);
+        String us = user.getDisplayname();
         newOpportunity.setCategory(cat);
-        newOpportunity.setUid(us);
+        newOpportunity.setAuthor(us);
         opportunityDao.save(newOpportunity);
         return "redirect:";
 
