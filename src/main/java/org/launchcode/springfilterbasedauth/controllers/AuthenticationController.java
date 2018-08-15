@@ -150,7 +150,7 @@ public class AuthenticationController extends AbstractController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, Model model, @RequestParam int categoryId, User user) {
+    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, Model model, User user, @RequestParam int categoryId) {
 
 
         if (errors.hasErrors()) {
