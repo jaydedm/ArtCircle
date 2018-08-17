@@ -21,10 +21,6 @@ public class Opportunity {
     @NotNull (message = "This cannot be empty")
     private String location;
 
-<<<<<<< HEAD:src/main/java/org/launchcode/springfilterbasedauth/models/forms/Opportunity.java
-=======
-    @NotNull
->>>>>>> 14e7b443774b4c2ae080539f44b649bc7e08b2fc:src/main/java/org/launchcode/springfilterbasedauth/models/Opportunity.java
     private String author;
 
     @ManyToOne
@@ -54,20 +50,8 @@ public class Opportunity {
     public void setLocation(String location) {
         this.location = location;
     }
-
-<<<<<<< HEAD:src/main/java/org/launchcode/springfilterbasedauth/models/forms/Opportunity.java
-=======
     public String getTitle() {
         return title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
->>>>>>> 14e7b443774b4c2ae080539f44b649bc7e08b2fc:src/main/java/org/launchcode/springfilterbasedauth/models/Opportunity.java
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public void setTitle(String title) {
