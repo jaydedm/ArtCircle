@@ -31,6 +31,10 @@ public class User extends AbstractEntity {
     private String pwHash;
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 14e7b443774b4c2ae080539f44b649bc7e08b2fc
     public User() {}
 
     public User(String username, String password, String displayname, String email) {

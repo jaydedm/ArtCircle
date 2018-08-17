@@ -1,13 +1,16 @@
 package org.launchcode.springfilterbasedauth.controllers;
 
+import org.launchcode.springfilterbasedauth.models.AbstractEntity;
 import org.launchcode.springfilterbasedauth.models.Category;
-import org.launchcode.springfilterbasedauth.models.forms.Opportunity;
+import org.launchcode.springfilterbasedauth.models.Opportunity;
 import org.launchcode.springfilterbasedauth.models.User;
 import org.launchcode.springfilterbasedauth.models.dao.CategoryDao;
 import org.launchcode.springfilterbasedauth.models.dao.OpportunityDao;
+import org.launchcode.springfilterbasedauth.models.dao.UserDao;
 import org.launchcode.springfilterbasedauth.models.forms.LoginForm;
 import org.launchcode.springfilterbasedauth.models.forms.RegisterForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.spel.ast.OperatorPower;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 
@@ -146,11 +150,7 @@ public class AuthenticationController extends AbstractController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-<<<<<<< HEAD
-    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunityForm, Errors errors, User user, Model model, @RequestParam int categoryId) {
-=======
     public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, Model model, User user, @RequestParam int categoryId) {
->>>>>>> 14e7b443774b4c2ae080539f44b649bc7e08b2fc
 
 
         if (errors.hasErrors()) {
@@ -159,19 +159,13 @@ public class AuthenticationController extends AbstractController {
             return "create";
         }
 
-        String us = user.getDisplayname();
         Category cat = categoryDao.findOne(categoryId);
-<<<<<<< HEAD
-        newOpportunityForm.setAuthor(us);
-        newOpportunityForm.setCategory(cat);
-        opportunityDao.save(newOpportunityForm);
-=======
         String us = user.getDisplayname();
         newOpportunity.setCategory(cat);
         newOpportunity.setAuthor(us);
         opportunityDao.save(newOpportunity);
->>>>>>> 14e7b443774b4c2ae080539f44b649bc7e08b2fc
         return "redirect:";
+
 
     }
 

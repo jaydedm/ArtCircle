@@ -146,11 +146,7 @@ public class AuthenticationController extends AbstractController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-<<<<<<< HEAD
     public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunityForm, Errors errors, User user, Model model, @RequestParam int categoryId) {
-=======
-    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, Model model, User user, @RequestParam int categoryId) {
->>>>>>> 14e7b443774b4c2ae080539f44b649bc7e08b2fc
 
 
         if (errors.hasErrors()) {
@@ -161,16 +157,9 @@ public class AuthenticationController extends AbstractController {
 
         String us = user.getDisplayname();
         Category cat = categoryDao.findOne(categoryId);
-<<<<<<< HEAD
         newOpportunityForm.setAuthor(us);
         newOpportunityForm.setCategory(cat);
         opportunityDao.save(newOpportunityForm);
-=======
-        String us = user.getDisplayname();
-        newOpportunity.setCategory(cat);
-        newOpportunity.setAuthor(us);
-        opportunityDao.save(newOpportunity);
->>>>>>> 14e7b443774b4c2ae080539f44b649bc7e08b2fc
         return "redirect:";
 
     }
