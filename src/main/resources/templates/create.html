@@ -10,7 +10,7 @@
 
 <form method="post" style="max-width:600px;" th:object="${opportunity}">
     <div class="form-group">
-        <label th:for="name">Name</label>
+        <label th:for="title">Title</label>
         <input class="form-control" th:field="*{title}" />
         <span th:errors="*{title}" class="error"></span>
     </div>
@@ -25,7 +25,6 @@
         <span th:errors="*{location}" class="error"></span>
     </div>
 
-
     <div class="form-group">
         <label th:for="type">Type</label>
         <select name = "categoryId">
@@ -35,7 +34,6 @@
         </select>
     </div>
 
-    <input type="hidden" name ="uid" th:value="${uid}" th:field="*{uid}" />
     <input type="submit" value="Add Opportunity" />
 </form>
 

@@ -1,4 +1,6 @@
-package org.launchcode.springfilterbasedauth.models;
+package org.launchcode.springfilterbasedauth.models.forms;
+
+import org.launchcode.springfilterbasedauth.models.Category;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,17 +12,16 @@ public class Opportunity {
     @GeneratedValue
     private int id;
 
-    @NotNull
+    @NotNull (message = "This cannot be empty")
     private String title;
 
-    @NotNull
+    @NotNull (message = "This cannot be empty")
     private String description;
 
-    @NotNull
+    @NotNull (message = "This cannot be empty")
     private String location;
 
-    @ManyToOne
-    private User user;
+    private String author;
 
     @ManyToOne
     private Category category;
@@ -28,6 +29,14 @@ public class Opportunity {
     public Opportunity(String title, String description) {
         this.title = title;
         this.description = description;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public Opportunity() {}
@@ -42,13 +51,6 @@ public class Opportunity {
         this.location = location;
     }
 
-    public User getUid() {
-        return user;
-    }
-
-    public void setUid(User user) {
-        this.user = user;
-    }
 
     public String getTitle() {
         return title;

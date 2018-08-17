@@ -31,10 +31,6 @@ public class User extends AbstractEntity {
     private String pwHash;
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @OneToMany
-    @JoinColumn(name = "user_uid")
-    private List<Opportunity> opportunities = new ArrayList<>();
-
     public User() {}
 
     public User(String username, String password, String displayname, String email) {
@@ -44,6 +40,7 @@ public class User extends AbstractEntity {
         this.email = email;
 
     }
+
 
     public String getUsername() {
         return username;
