@@ -182,4 +182,8 @@ public class AuthenticationController extends AbstractController {
 
     }
 
+    @RequestMapping (value = "map", method = RequestMethod.GET)
+    public String displayMap(Model model) {
+        return "MapTest";
+    }
 }

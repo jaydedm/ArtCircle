@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
+<title>Simple Map</title>
+    <meta name = "viewport" content="initial-scale=1.0"></meta>
+    <meta charset = "utf-8"> </meta>
+    <style>
+        #map {
+            height: 100%;
+        }
+        html, body {
+            height : 100%;
+            margin: 0;
+            padding: 0;
+            }
+    </style>
 </head>
 <body class="container">
 
@@ -25,8 +38,11 @@
 
 <h1 th:each="opportunity : ${opportunities}">
 <h1 th:align = "center" th:text="${opportunity.title}"></h1>
-    <!--<h5 th:align="center" th:text=""</h5> -->
+    <h3 align="center">By: <span th:text="${opportunity.author}"></span></h3>
+    <h5 th:align="center" th:text="${opportunity.description}"></h5>
 </h1>
+
+
 
 </body>
 </html>
