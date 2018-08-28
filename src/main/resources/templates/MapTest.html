@@ -27,8 +27,7 @@ function initMap() {
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom: 5, center: uluru});
 
-      /*
-
+/*
   // The marker, positioned at Uluru
 
   var marker = new google.maps.Marker({position: uluru, map: map});
@@ -41,19 +40,19 @@ function initMap() {
   infoWindow.open(map, marker);
   });
 
-  */
+*/
 
-
-
+  addMarker({coords:{lat: -25.344, lng: 131.036}});
 
   // Add Marker Function
 
   function addMarker(props){
-  var marker = new google.maps.Marker({
-  position: props.coords,
-  map: map});
+    var marker = new google.maps.Marker({
+        position: props.coords,
+        map: map});
 
-  addMarker({coords:{lat: -25.344, lng: 131.036}});
+    }
+
 
 
 }
