@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"> </meta>
+    <meta http-equiv="X-UA-Compantible" content="ie-edge"> </meta>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous"> </link>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>My Geocode App</title>
+</head>
+<body>
+
+    <div class="container">
+        <div id="formatted-address"></div>
+        <div id="address-components"></div>
+    </div>
+
+    <script th:inline="javascript">
+
+    /*<![CDATA[*/
+
+    //call geocode
+    geocode();
+
+        function geocode(){
+
+        var location = '22 Main Street Boston MA';
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+
+            params:{
+                address:location,
+                key:'AIzaSyCWfGHCq-8oFaxpK2b0Uj4NVtOOKZ4Jox8'
+            }
+
+        })
+
+        .then(function(response){
+
+            //LOG FULL RESPONSE
+            console.log(response);
+
+            //Formatted Address
+            var formattedAddress = response.data.results[0].formatted_address;
+            var formattedAddressOutput = `
+                <ul class="list-group">
+                    <li class="list-group-item">${formattedAddress}</li>
+                </ul>
+            `;
+
+
+            // Address Components
+            var addressComponents = response.data.results[0].address_components;
+            var addressComponentsOutput = '<ul class="list-group">';
+
+
+            for(var i = 0; i < addressComponents.length; i++){
+
+
+                addressComponentsOutput += `
+                    <li class="list-group-item"><strong>${addressComponents[i].types[0]}</strong>: ${addressComponents[i].long_name}</li>
+
+                `;
+
+
+
+            }
+            addressComponentsOutput += '</ul>';
+
+
+            //Output to app
+            document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
+            document.getElementById('address-components').innerHTML = addressComponentsOutput;
+
+            console.log();
+
+        })
+
+        .catch(function(error){
+            console.log(error);
+
+       });
+
+    }
+
+    /*]]>*/
+    </script>
+
+
+</body>
+</html>

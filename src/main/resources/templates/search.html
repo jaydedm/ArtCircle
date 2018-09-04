@@ -20,7 +20,7 @@
         <td><a th:href = "'/opportunity?id=' + ${opportunity.id}" th:text="${opportunity.title}"></a></td>
         <td th:text="${opportunity.location}"></td>
         <td th:text="${opportunity.category.name}"></td>
-        <td th:text="${opportunity.author}"></td>
+        <td><a th:href = "'/user?displayname=' + ${opportunity.author} + '&amp;id=' + ${opportunity.user.id}" th:text="${opportunity.user.displayname}"></a></td>
     </tr>
 
 </table>
