@@ -1,11 +1,9 @@
 package org.launchcode.springfilterbasedauth.models;
 
+import org.launchcode.springfilterbasedauth.models.forms.Opportunity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
@@ -17,6 +15,7 @@ import java.util.List;
 @Entity
 public class User extends AbstractEntity {
 
+
     @NotNull
     @Pattern(regexp = "[a-zA-Z][a-zA-Z0-9_-]{4,11}", message = "Invalid username")
     private String username;
@@ -26,6 +25,10 @@ public class User extends AbstractEntity {
 
     @NotNull
     private String email;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Opportunity> opportunities = new ArrayList<>();
 
     @NotNull
     private String pwHash;

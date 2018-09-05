@@ -13,10 +13,10 @@ public abstract class AbstractEntity {
 
     @Id
     @GeneratedValue
-    private int uid;
+    private int id;
 
-    public int getUid() {
-        return this.uid;
+    public int getId() {
+        return this.id;
     }
 
 }

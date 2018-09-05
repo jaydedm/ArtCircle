@@ -8,4 +8,6 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface OpportunityDao extends CrudRepository<Opportunity, Integer> {
+
+    Opportunity findByUserId(int id);
 }

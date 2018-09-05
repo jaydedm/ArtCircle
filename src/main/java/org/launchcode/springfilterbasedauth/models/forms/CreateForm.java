@@ -10,7 +10,10 @@ public class CreateForm {
     @NotNull
     private String details;
 
+
     public CreateForm() {}
+
+
 
     public String getTitle() {
         return title;

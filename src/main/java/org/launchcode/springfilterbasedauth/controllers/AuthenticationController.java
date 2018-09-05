@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -138,6 +139,7 @@ public class AuthenticationController extends AbstractController {
         model.addAttribute("title", "Create Opportunity");
         model.addAttribute(new Opportunity());
         model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("users", userDao.findAll());
         return "create";
     }
 
@@ -146,7 +148,8 @@ public class AuthenticationController extends AbstractController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, User user, Model model, @RequestParam int categoryId) {
+    public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, User user,
+                                               Model model, @RequestParam int categoryId, @RequestParam int userId) {
 
 
 
@@ -156,8 +159,10 @@ public class AuthenticationController extends AbstractController {
             return "create";
         }
 
+        User owner = userDao.findOne(userId);
         String us = user.getDisplayname();
         Category cat = categoryDao.findOne(categoryId);
+        newOpportunity.setUser(owner);
         newOpportunity.setAuthor(us);
         newOpportunity.setCategory(cat);
         opportunityDao.save(newOpportunity);
@@ -182,8 +187,21 @@ public class AuthenticationController extends AbstractController {
 
     }
 
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public String displayUserContact(Model model, @RequestParam String displayname, @RequestParam int id) {
+
+        Opportunity op = opportunityDao.findByUserId(id);
+        User user = userDao.findByUsername(displayname);
+        model.addAttribute("users", user);
+        model.addAttribute("opportunities", op);
+        return "user";
+    }
+
     @RequestMapping (value = "map", method = RequestMethod.GET)
     public String displayMap(Model model) {
         return "MapTest";
     }
+
+    @RequestMapping (value = "geocode", method = RequestMethod.GET)
+    public String displayGeocodeMap(Model model) {return "geocode";}
 }
