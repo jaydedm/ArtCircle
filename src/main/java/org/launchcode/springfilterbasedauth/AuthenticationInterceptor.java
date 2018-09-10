@@ -24,7 +24,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 
         // Authentication white list; add all publicly visible pages here
-        List<String> nonAuthPages = Arrays.asList("/login", "/register");
+        List<String> nonAuthPages = Arrays.asList("/login", "/register", "/");
 
         // Require sign-in for auth pages
         if ( !nonAuthPages.contains(request.getRequestURI()) ) {

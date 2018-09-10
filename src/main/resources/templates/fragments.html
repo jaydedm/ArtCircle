@@ -1,39 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
     <title th:text="${title}">ArtCircle</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"></link>
+    <link href="http://localhost:5000/src/main/resources/templates/style.css" rel="stylesheet"></link>
 </head>
 <body>
 
-<div th:fragment="navigation">
+<!-- Navigation -->
+<div th:if="${user}">
+    <nav th:fragment="navigation" class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 
-    <div th:if="${user}">
 
-        <!-- Nav section for logged-in users -->
+        <div class ="container-fluid">
+            <a class="navbar-brand" href="#"><img src="http://localhost:5000/src/main/resources/templates/img/ArtCircle.png"></img></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">Services</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown_target">
+                            <a href="/create" class="dropdown-item">Create an Opportunity</a>
+                            <div class="dropdown-divider"></div>
+                            <a href ="/search" class="dropdown-item">Search for an Opportunity</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-        <nav class="user-nav">
-            <a href="/logout">Log Out</a> |
-            <a href="/">Home</a>
-        </nav>
+    </nav>
+</div>
+<div th:unless="${user}">
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 
-    </div>
 
-    <div th:unless="${user}">
+        <div class ="container-fluid">
+            <a class="navbar-brand" href="#"><img src="http://localhost:5000/src/main/resources/templates/img/ArtCircle.png"></img></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">Services</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown_target">
+                            <a href="/create" class="dropdown-item">Create an Opportunity</a>
+                            <div class="dropdown-divider"></div>
+                            <a href ="/search" class="dropdown-item">Search for an Opportunity</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-        <!-- Nav section for users that aren't logged in -->
-
-        <nav>
-            <a href="/login">Log In</a> |
-            <a href="/register">Register</a>
-        </nav>
-
-    </div>
-
+    </nav>
 </div>
 
 </body>

@@ -204,4 +204,7 @@ public class AuthenticationController extends AbstractController {
 
     @RequestMapping (value = "geocode", method = RequestMethod.GET)
     public String displayGeocodeMap(Model model) {return "geocode";}
+
+    @RequestMapping (value = "bootstrap", method = RequestMethod.GET)
+    public String displayBootstrap(Model model) {return "bootstrap";}
 }

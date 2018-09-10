@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<h1>Welcome to ArtCircle, <span th:text="${user.displayname}"></span></h1>
+
+<a href="/create">Create an Opportunity </a>|<a href="/search"> Search for an Opportunity</a>
+
+
+
+</body>
+</html>
