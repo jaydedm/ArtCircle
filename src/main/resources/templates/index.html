@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:fragment="head">
-    <meta charset="utf-8"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title th:text="${title}">ArtCircle</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"></link>
-    <link href="http://localhost:5000/src/main/resources/templates/style.css" rel="stylesheet"></link>
+<head th:replace="fragments :: head">
 </head>
 <body>
 
@@ -26,10 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link scroll" href="#about">About</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">Services</a>
@@ -40,7 +31,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Team</a>
+                    <a class="nav-link scroll" href="#team">Team</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>
@@ -63,7 +54,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -147,7 +138,7 @@
 
 <!--- Welcome Section -->
 <div class="container-fluid padding">
-<div class="row welcome text-center">
+<div class="row welcome text-center" id="about">
     <div class="col-12">
         <h1 class="display-4">Serving you with ease.</h1>
     </div>
@@ -164,21 +155,27 @@
 <div class="container-fluid padding">
 <div class="row text-center padding">
     <div class="col-xs-12 col-sm-6 col-m-3 col-md-4">
+    <div class="artistbox">
         <i class="fas fa-paint-brush">
         </i>
         <h3>All Artists</h3>
         <p>Performance, Visual, all artists are welcome here.</p>
     </div>
+    </div>
     <div class="col-xs-12 col-sm-6 col-m-3 col-md-4">
+    <div class="opportunitybox">
         <a href="/create"><i class="fa fa-handshake"></i></a>
         <h3>Create an Opportunity</h3>
         <p>Need to fill a spot for your summer festival, show-stopping production, wedding, or
         any other need? Look no further.</p>
     </div>
+    </div>
     <div class="col-xs-12 col-sm-6 col-m-3 col-md-4">
+    <div class ="searchbox">
         <a href="/search"><i class="fa fa-search"></i></a>
         <h3>Search</h3>
         <p>Find an opportunity that matches your skill set.</p>
+    </div>
     </div>
 </div>
     <hr class="my-4"></hr>
@@ -189,6 +186,7 @@
 <div class="container-fluid padding">
 <div class="row padding">
     <div class="col-md-12 col-lg-6">
+    <div class="ifyoubuildbox">
         <h2>If you build it...</h2>
         <p>The columns will automatically stack on top of each other when the screen is less than 576px wide.</p>
         <p>Blahlhldhfasl lwhe flkalfahdslkf lkahsf lkhalskdh lahf l;ahdf lakshdf lkashfdaofehwao hhad lh ladhfl;ashle; a
@@ -197,8 +195,11 @@
         <br></br>
         <a href="#" class="btn btn-primary">Learn More</a>
     </div>
+    </div>
     <div class="col-lg-6">
+    <div class="ifyoubuildpicbox">
         <img src="http://localhost:5000/src/main/resources/templates/img/desk.png" class="img-fluid"></img>
+    </div>
     </div>
 </div>
 </div>
@@ -239,7 +240,7 @@
 
 <!--- Meet the team -->
 <div class="container-fluid padding">
-<div class="row welcome text-center">
+<div class="row welcome text-center" id="team">
     <div class="col-12">
         <h1 class="display-4">Meet the Team</h1>
     </div>
@@ -253,7 +254,8 @@
 <div class="container-fluid padding">
 <div class="row padding">
     <div class="col-md-4">
-        <div class="card">
+        <div class="card" id="card1">
+
             <img class="card-img-top" src="http://localhost:5000/src/main/resources/templates/img/team1.png"/>
             <div class="card-body">
                 <h4 class="card-title">John Doe</h4>
@@ -261,11 +263,13 @@
                 20 years of experience.</p>
                 <a href="#" class="btn btn-outline-secondary">See Profile</a>
             </div>
+
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card">
+        <div class="card" id="card2">
+
             <img class="card-img-top" src="http://localhost:5000/src/main/resources/templates/img/team2.png"/>
             <div class="card-body">
                 <h4 class="card-title">Mary Jo</h4>
@@ -273,18 +277,21 @@
                     20 years of experience.</p>
                 <a href="#" class="btn btn-outline-secondary">See Profile</a>
             </div>
+
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card">
+        <div class="card" id="card3">
+
             <img class="card-img-top" src="http://localhost:5000/src/main/resources/templates/img/team3.png"/>
             <div class="card-body">
                 <h4 class="card-title">Phil Ho</h4>
                 <p class="card-text">Phil Ho is an Internet entrepreneur with almost
                     20 years of experience.</p>
                 <a href="#" class="btn btn-outline-secondary">See Profile</a>
-            </div>
+
+        </div>
         </div>
     </div>
 
@@ -338,15 +345,15 @@
 <!--- Connect -->
 <div class="container-fluid padding">
 <div class="row text-center padding">
-    <div class="col-12">
+    <div class="col-12" id="connect">
         <h2>Connect</h2>
     </div>
     <div class="col-12 social padding">
-        <a href="facebook.com"><i class="fab fa-facebook"></i></a>
-        <a href="facebook.com"><i class="fab fa-twitter"></i></a>
-        <a href="facebook.com"><i class="fab fa-google-plus-g"></i></a>
-        <a href="facebook.com"><i class="fab fa-instagram"></i></a>
-        <a href="facebook.com"><i class="fab fa-youtube"></i></a>
+        <a href="facebook.com"><i class="fab fa-facebook" id="facebook"></i></a>
+        <a href="facebook.com"><i class="fab fa-twitter" id="twitter"></i></a>
+        <a href="facebook.com"><i class="fab fa-google-plus-g" id="google"></i></a>
+        <a href="facebook.com"><i class="fab fa-instagram" id="insta"></i></a>
+        <a href="facebook.com"><i class="fab fa-youtube" id="youtube"></i></a>
     </div>
 </div>
 </div>
@@ -384,7 +391,7 @@
         </div>
         <div class="col-12">
             <hr class="light-100"/>
-            <h5>&copy; ArtCircle.com</h5>
+            <h5>&copy; ArtCircle</h5>
         </div>
     </div>
     </div>
@@ -436,6 +443,118 @@ function initMap() {
 
 }
     </script>
+
+<!--ScrollReveal -->
+<script type="text/javascript">
+    ScrollReveal().reveal('.navbar', {
+        duration: 2000,
+        origin:'bottom'
+    });
+
+    ScrollReveal().reveal('.artistbox', {
+        delay: 250,
+        duration: 2500,
+        distance: '100px',
+        origin: 'left'
+    })
+
+     ScrollReveal().reveal('.opportunitybox', {
+        delay: 250,
+        duration: 2500,
+        distance: '50px',
+        origin: 'bottom'
+    })
+
+    ScrollReveal().reveal('.searchbox', {
+        delay: 250,
+        duration: 2500,
+        distance: '100px',
+        origin: 'right'
+    })
+
+    ScrollReveal().reveal('.ifyoubuildbox', {
+        delay: 1000,
+        duration: 2500,
+        distance: '50px',
+        origin: 'left'
+    })
+
+    ScrollReveal().reveal('.ifyoubuildpicbox', {
+        delay: 1500,
+        duration: 2500,
+        distance: '50px',
+        origin: 'right'
+    })
+
+    ScrollReveal().reveal('#card1', {
+        delay: 500,
+        duration: 2500,
+        distance: '50px',
+    })
+
+     ScrollReveal().reveal('#card2', {
+        delay: 1200,
+        distance: '50px',
+    })
+
+     ScrollReveal().reveal('#card3', {
+        delay: 1800,
+        distance: '50px',
+
+    })
+
+     ScrollReveal().reveal('#connect', {
+        delay: 250
+
+    })
+
+    ScrollReveal().reveal('#facebook', {
+        delay: 500
+
+    })
+
+    ScrollReveal().reveal('#twitter', {
+        delay: 700
+
+    })
+
+
+    ScrollReveal().reveal('#google', {
+        delay: 900
+
+    })
+
+    ScrollReveal().reveal('#insta', {
+        delay: 1100
+
+    })
+
+    ScrollReveal().reveal('#youtube', {
+        delay: 1300
+
+    })
+</script>
+
+<!--smooth scrolling -->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var scrollLink = $('.scroll');
+
+        //smooth scrolling
+
+        scrollLink.click(function(e){
+           e.preventDefault();
+           $('body,html').animate({
+
+                scrollTop: $(this.hash).offset().top
+
+           }, 1000 )
+        })
+
+    })
+
+</script>
 
 <!--Google Maps -->
 <script type="text/javascript" async="async"
