@@ -21,9 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 
-/**
- * Created by LaunchCode
- */
 @Controller
 public class AuthenticationController extends AbstractController {
 
@@ -44,6 +41,7 @@ public class AuthenticationController extends AbstractController {
         return "register";
     }
 
+    //checks for existing users and lets users register. Adds new user to DB.
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@ModelAttribute @Valid RegisterForm form, Errors errors, HttpServletRequest request) {
 
@@ -72,6 +70,8 @@ public class AuthenticationController extends AbstractController {
         return "login";
     }
 
+
+    //login function
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute @Valid LoginForm form, Errors errors, HttpServletRequest request) {
 
@@ -106,6 +106,8 @@ public class AuthenticationController extends AbstractController {
     @Autowired
     private CategoryDao categoryDao;
 
+
+    //renders list of categories in the DB
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     public String catetegoryIndex(Model model, @RequestParam(defaultValue = "0") int id) {
         model.addAttribute("title", "Categories");
@@ -113,6 +115,7 @@ public class AuthenticationController extends AbstractController {
         return "category";
     }
 
+    //renders add form
     @RequestMapping(value = "categoryAdd", method = RequestMethod.GET)
     public String add(Model model) {
         model.addAttribute(new Category());
@@ -120,6 +123,9 @@ public class AuthenticationController extends AbstractController {
         return "categoryAdd";
     }
 
+
+    //adds categories to the DB. Honestly, I'd rather initialize with a hard list then have this "Secret" page to add them. I want to keep
+    // categories in the tables for now to demonstrate more SQL work, but it'd be unnecessary in a production product.
     @RequestMapping(value = "categoryAdd", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute @Valid Category category, Errors errors) {
 
@@ -133,7 +139,7 @@ public class AuthenticationController extends AbstractController {
     }
 
 
-
+    //renders the form and gets the currently logged in user and separately pulls categories to fill in the selector.
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String displayCreateOpportunityForm(Model model, User user) {
         model.addAttribute("title", "Create Opportunity");
@@ -144,8 +150,9 @@ public class AuthenticationController extends AbstractController {
     }
 
 
-    //have to add categories from a hard list to this at some point
-
+    //****have to add categories from a hard list to this at some point
+    // checks for errors, and if all good, finds who is currently logged in, pulls their ID,
+    // pulls category ID from selector, attaches necessary form information and saves the new object in DB.
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String processCreateOpportunityForm(@ModelAttribute @Valid Opportunity newOpportunity, Errors errors, User user,
@@ -170,6 +177,7 @@ public class AuthenticationController extends AbstractController {
 
     }
 
+    //finds objects in DB and sends them over to render in view
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String displaySearch(Model model) {
         model.addAttribute("opportunities", opportunityDao.findAll());
@@ -178,6 +186,7 @@ public class AuthenticationController extends AbstractController {
         return "search";
     }
 
+    //finds opportunity object in DB to render in the view
     @RequestMapping(value = "opportunity", method = RequestMethod.GET)
     public String category(Model model, @RequestParam int id) {
 
@@ -187,11 +196,13 @@ public class AuthenticationController extends AbstractController {
 
     }
 
+
+    //finds User and Opportunities in the DB to render in the view. Uses params in URL to query for the correct ones.
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public String displayUserContact(Model model, @RequestParam String displayname, @RequestParam int id) {
 
         Opportunity op = opportunityDao.findByUserId(id);
-        User user = userDao.findByUsername(displayname);
+        User user = userDao.findByDisplayname(displayname);
         model.addAttribute("users", user);
         model.addAttribute("opportunities", op);
         return "user";
