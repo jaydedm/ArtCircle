@@ -9,9 +9,7 @@ import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by LaunchCode
- */
+
 @Entity
 public class User extends AbstractEntity {
 

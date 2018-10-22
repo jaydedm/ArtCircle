@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by LaunchCode
- */
+
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired

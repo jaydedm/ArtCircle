@@ -10,6 +10,8 @@ html, body {
 .navbar {
     padding: .8rem;
 }
+
+
 .navbar-nav li {
     padding-right: 20px;
 }
@@ -182,7 +184,24 @@ hr.light-100 {
         margin-bottom: 1rem;
 }
 
+.bg{
+background: url('https://s3-us-west-2.amazonaws.com/artcircle.com/audience-band-concert-1105666.jpg') no-repeat;
+background-size: cover;}
 
+.bg-2{
+background: url('https://s3-us-west-2.amazonaws.com/artcircle.com/audience-band-blue-736355.jpg') no-repeat;
+background-size: cover;}
+
+
+.form-container{
+color: #fff;
+border: 1px solid #000;
+padding: 50px 60px;
+margin-top:15vh;
+-webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+}
 
 /*---Media Queries --*/
 @media (max-width: 992px) {
@@ -193,12 +212,7 @@ hr.light-100 {
 
   }
 
-@media (max-width 950px) {
-.carousel caption form {
-    width: 500px
-}
-
-}
+@media (max-width 768px) {
 
 
 .carousel-caption h1 {
@@ -217,10 +231,6 @@ hr.light-100 {
     padding: 8px 14px;
 }
 
-.carousel-caption form {
-    width:400px;
-
-}
 
 .display-4 {
     font-size: 200%;
@@ -234,10 +244,11 @@ hr.light-100 {
 }
 @media (max-width: 576px) {
 
-.carousel-caption {
-    top: 40%;
+.carousel-caption{
+    top: 50%;
 
 }
+
 
 .carousel-caption h1 {
     font-size: 250%;
@@ -245,9 +256,18 @@ hr.light-100 {
 }
 
 .carousel-caption h3 {
-    font-size: 110%;
+    display: none;
 }
 
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 100%;
+}
+
+}
 .carousel-caption .btn {
     font-size: 90%;
     padding: 4px 8px;
@@ -296,7 +316,7 @@ figure {
   height: 100%;
 }
 #fixed {
-  background-image: url('http://localhost:5000/src/main/resources/templates/img/architecture-auditorium-building-69815.jpg');
+  background-image: url('https://s3-us-west-2.amazonaws.com/artcircle.com/architecture-auditorium-building-69815.jpg');
   position: fixed;
   display: block;
   top: 0;

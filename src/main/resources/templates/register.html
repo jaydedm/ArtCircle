@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
-<nav th:fragment="navigation" class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+<body>
+<nav th:fragment="navigation" class="navbar navbar-expand-md navbar-light bg-white sticky-top">
 
 
     <div class ="container-fluid">
-        <a class="navbar-brand" href="#"><img src="http://localhost:5000/src/main/resources/templates/img/ArtCircle.png"></img></a>
+        <a class="navbar-brand" href="/"><img src="https://s3-us-west-2.amazonaws.com/artcircle.com/ArtCircle.png"></img></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,7 +16,7 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="/#about">About</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">Services</a>
@@ -27,7 +27,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Team</a>
+                    <a class="nav-link" href="/#team">Team</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
@@ -40,8 +40,12 @@
 
 <figure>
 
-        <div id="fixed">
-            <form method="post" th:object="${registerForm}" style="padding-top: 130px; width:400px; margin: auto;">
+    <div class="container-fluid bg">
+    <div class="row">
+        <div class="col-md-4 col-sm-12 col-xs-12"></div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <form class = "form-container" method="post" th:object="${registerForm}">
+                <h1 style="text-align: center;">Register</h1>
                 <div class="form-group">
                     <label th:for="username" style="color:white;">Username</label>
                     <input class="form-control" th:field="*{username}" />
@@ -71,6 +75,8 @@
                 <input type="submit" value="Register" />
             </form>
         </div>
+        </div>
+    </div>
 </figure>
 
 

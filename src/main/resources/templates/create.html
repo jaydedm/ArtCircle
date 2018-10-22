@@ -2,48 +2,59 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
-<body class="container">
+<body>
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<h1>Create!</h1>
 
-<form method="post" style="max-width:600px;" th:object="${opportunity}">
-    <div class="form-group">
-        <label th:for="title">Title</label>
-        <input class="form-control" th:field="*{title}" />
-        <span th:errors="*{title}" class="error"></span>
+
+<div class="container-fluid bg-2">
+    <div class="row">
+        <div class="col-md-4 col-sm-12 col-xs-12"></div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <form class= "form-container" method="post" th:object="${opportunity}">
+                <h1 style="text-align: center">Create an Opportunity</h1>
+                <div class="form-group">
+                    <div>Title</div>
+                    <label th:for="title"></label>
+                    <input class="form-control" th:field="*{title}" />
+                    <span th:errors="*{title}" class="error"></span>
+                </div>
+                <div class="form-group">
+                    <div>Description</div>
+                    <label th:for="description"></label>
+                    <textarea spellcheck="true" rows="15" cols="40" th:field="*{description}" />
+                    <span th:errors="*{description}" class="error"></span>
+                </div>
+                <div class="form-group">
+                    <div>Location</div>
+                    <label th:for="location"></label>
+                    <input class="form-control" th:field="*{location}" />
+                    <span th:errors="*{location}" class="error"></span>
+                </div>
+
+                <div class="form-group">
+                    <div>Type</div>
+                    <label th:for="type"></label>
+                    <select name = "categoryId">
+                        <option th:each="category : ${categories}"
+                                th:text="${category.name}"
+                                th:value="${category.id}"></option>
+                    </select>
+                </div>
+
+                <div class ="form-group">
+                    <input type ="hidden" name = "userId"
+                           th:value = "${user.id}"
+                           />
+                </div>
+
+
+                <input type="submit" value="Add Opportunity" style="align: center"/>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label th:for="description">Description</label>
-        <textarea spellcheck="true" rows="20" cols="80" th:field="*{description}" />
-        <span th:errors="*{description}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="location">Location</label>
-        <input class="form-control" th:field="*{location}" />
-        <span th:errors="*{location}" class="error"></span>
-    </div>
-
-    <div class="form-group">
-        <label th:for="type">Type</label>
-        <select name = "categoryId">
-            <option th:each="category : ${categories}"
-                    th:text="${category.name}"
-                    th:value="${category.id}"></option>
-        </select>
-    </div>
-
-    <div class ="form-group">
-        <input type ="hidden" name = "userId"
-               th:value = "${user.id}"
-               />
-    </div>
-
-
-    <input type="submit" value="Add Opportunity" />
-</form>
-
+</div>
 
 </body>
 </html>

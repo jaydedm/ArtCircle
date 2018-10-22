@@ -2,13 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
     <meta charset="UTF-8"></meta>
-    <title>Title</title>
+    <title>User Account</title>
 </head>
 <body>
 
 <h1 th:each="user : ${users}"></h1>
-<h1 th:align = "center" th:text="${user.displayname}"></h1>
-<h2 th:align = "center" th:text="${user.email}"></h2>
+<div th:each="user : ${users}">
+    <h1 th:align = "center" th:text="${user.displayname}"></h1>
+    <h2 th:align = "center" th:text="${user.email}"></h2>
+</div>
 <div th:each="opportunity : ${opportunities}">
     <h3 th:align = "center" th:text = "${opportunity.title}"></h3>
 </div>
